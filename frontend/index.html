@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mangaro — مانگارو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0b0a0f; --bg-2:#100e16;
+    --surface:#16131f; --surface-2:#1d1928; --line:#272232; --line-soft:#1e1a28;
+    --ink:#efecf6; --mut:#a59fb4; --faint:#6f6a7d;
+    --accent:#7c4dff; --accent-2:#9d7bff; --accent-deep:#4527a0;
+    --maxw:1160px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Vazirmatn",system-ui,sans-serif;line-height:1.7;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  section{position:relative;}
+
+  /* ───────── NAV ───────── */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);
+    background:rgba(11,10,15,.72);border-bottom:1px solid var(--line-soft);}
+  .nav-in{display:flex;align-items:center;gap:28px;height:68px;}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;}
+  .brand .mark{width:34px;height:34px;border-radius:9px;overflow:hidden;
+    box-shadow:0 4px 12px rgba(124,77,255,.35);}
+  .brand .mark svg{width:100%;height:100%;display:block;}
+  .brand .en{direction:ltr;letter-spacing:.3px;}
+  .nav-links{display:flex;gap:30px;margin-inline-start:18px;font-size:14.5px;color:var(--mut);font-weight:600;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{margin-inline-start:auto;display:flex;align-items:center;gap:12px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;
+    border-radius:11px;padding:10px 18px;border:1px solid transparent;cursor:pointer;transition:.15s;white-space:nowrap;}
+  .btn svg{width:17px;height:17px;}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(124,77,255,.32);}
+  .btn-primary:hover{background:#8a5cff;transform:translateY(-1px);}
+  .btn-ghost{border-color:var(--line);color:var(--ink);background:var(--surface);}
+  .btn-ghost:hover{background:var(--surface-2);}
+  @media(max-width:760px){.nav-links{display:none;}}
+
+  /* ───────── HERO ───────── */
+  .hero{padding:70px 0 40px;overflow:hidden;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
+    color:var(--accent-2);background:rgba(124,77,255,.12);border:1px solid rgba(124,77,255,.28);
+    border-radius:999px;padding:6px 14px;margin-bottom:22px;}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);}
+  h1.head{font-size:clamp(34px,5vw,56px);line-height:1.18;font-weight:900;margin:0 0 20px;
+    letter-spacing:-.5px;text-wrap:balance;}
+  h1.head .hl{background:linear-gradient(110deg,var(--accent-2),var(--accent));
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  .lead{font-size:17.5px;color:var(--mut);margin:0 0 30px;max-width:520px;line-height:1.85;text-wrap:pretty;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .store{display:inline-flex;align-items:center;gap:11px;background:var(--surface);
+    border:1px solid var(--line);border-radius:14px;padding:10px 18px 10px 16px;transition:.15s;}
+  .store:hover{background:var(--surface-2);transform:translateY(-2px);border-color:#352e44;}
+  .store .si{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:0 0 30px;}
+  .store .st{display:flex;flex-direction:column;line-height:1.25;}
+  .store .st small{font-size:11px;color:var(--faint);}
+  .store .st b{font-size:14.5px;font-weight:700;}
+  .hero-stats{display:flex;gap:34px;margin-top:38px;}
+  .hero-stats .s b{font-size:24px;font-weight:800;display:block;direction:ltr;}
+  .hero-stats .s span{font-size:13px;color:var(--faint);}
+
+  /* phone mockup */
+  .phone-stage{position:relative;display:flex;justify-content:center;}
+  .glow{position:absolute;width:420px;height:420px;border-radius:50%;top:8%;left:50%;
+    transform:translateX(-50%);background:radial-gradient(circle,rgba(124,77,255,.45),transparent 62%);
+    filter:blur(28px);z-index:0;}
+  .phone{position:relative;z-index:1;width:286px;height:600px;border-radius:38px;
+    background:#040406;padding:7px;box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05);}
+  .screen{width:100%;height:100%;border-radius:31px;overflow:hidden;background:#0e0d12;
+    display:flex;flex-direction:column;color:var(--ink);direction:rtl;}
+  .s-status{height:30px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 16px;font-size:11.5px;font-weight:700;color:#fff;}
+  .s-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;}
+  .s-bar .t{flex:1;font-size:17px;font-weight:700;}
+  .s-bar .ic{width:20px;height:20px;color:var(--mut);}
+  .s-tabs{display:flex;gap:14px;padding:0 14px 10px;font-size:12px;font-weight:700;color:var(--faint);}
+  .s-tabs .on{color:var(--accent-2);position:relative;}
+  .s-tabs .on::after{content:"";position:absolute;inset-inline:0;bottom:-6px;height:2.5px;border-radius:2px;background:var(--accent);}
+  .s-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:4px 12px;}
+  .s-cov{aspect-ratio:2/3;border-radius:7px;position:relative;overflow:hidden;}
+  .s-cov .sc{position:absolute;inset-inline:0;bottom:0;height:55%;
+    background:linear-gradient(to top,rgba(0,0,0,.8),transparent);}
+  .s-cov .ct{position:absolute;inset-inline:5px;bottom:4px;color:#fff;font-size:8.5px;font-weight:600;line-height:1.25;}
+  .s-cov .bd{position:absolute;top:4px;inset-inline-start:4px;background:var(--accent);color:#fff;
+    font-size:8px;font-weight:800;border-radius:4px;padding:2px 5px;}
+  .s-nav{margin-top:auto;display:flex;background:#151320;padding:8px 4px 10px;}
+  .s-nav .n{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--faint);font-size:8.5px;font-weight:600;}
+  .s-nav .n svg{width:18px;height:18px;}
+  .s-nav .n.on{color:var(--ink);}
+  .s-nav .n.on .pl{background:rgba(124,77,255,.28);}
+  .s-nav .pl{width:42px;height:22px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+  .s-nav .n.on svg{color:var(--accent-2);}
+
+  /* ───────── MARQUEE strip ───────── */
+  .strip{padding:30px 0;border-block:1px solid var(--line-soft);margin-top:30px;
+    background:linear-gradient(var(--bg-2),var(--bg-2));}
+  .strip-in{display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap;
+    color:var(--faint);font-size:13.5px;}
+  .strip b{color:var(--mut);}
+  .src-chip{display:inline-flex;align-items:center;gap:7px;background:var(--surface);
+    border:1px solid var(--line);border-radius:999px;padding:7px 15px;font-size:13px;font-weight:600;color:var(--mut);}
+  .src-chip i{width:8px;height:8px;border-radius:50%;display:block;}
+
+  /* ───────── FEATURES ───────── */
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 50px;}
+  .sec-tag{font-size:13px;font-weight:800;color:var(--accent-2);letter-spacing:.5px;margin-bottom:12px;}
+  .sec-head h2{font-size:clamp(26px,3.4vw,38px);font-weight:900;margin:0 0 14px;letter-spacing:-.4px;}
+  .sec-head p{color:var(--mut);font-size:16px;margin:0;text-wrap:pretty;}
+  .features{padding:90px 0;}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  @media(max-width:880px){.feat-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.feat-grid{grid-template-columns:1fr;}}
+  .feat{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:26px 24px;transition:.18s;}
+  .feat:hover{border-color:#382f4d;transform:translateY(-3px);background:var(--surface-2);}
+  .feat .fi{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    background:rgba(124,77,255,.13);color:var(--accent-2);margin-bottom:18px;}
+  .feat .fi svg{width:25px;height:25px;}
+  .feat.span2{grid-column:span 2;}
+  @media(max-width:880px){.feat.span2{grid-column:span 2;}}
+  @media(max-width:560px){.feat.span2{grid-column:span 1;}}
+  .feat h3{font-size:18px;font-weight:800;margin:0 0 9px;}
+  .feat p{color:var(--mut);font-size:14.5px;margin:0;line-height:1.8;}
+
+  /* ───────── RTL highlight band ───────── */
+  .band{padding:80px 0;background:
+    radial-gradient(700px 300px at 80% 0%,rgba(124,77,255,.14),transparent),var(--bg-2);
+    border-block:1px solid var(--line-soft);}
+  .band-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  @media(max-width:840px){.band-grid{grid-template-columns:1fr;gap:36px;}}
+  .band h2{font-size:clamp(26px,3.4vw,36px);font-weight:900;margin:0 0 18px;letter-spacing:-.4px;text-wrap:balance;}
+  .band p{color:var(--mut);font-size:16px;margin:0 0 24px;line-height:1.9;}
+  .checklist{display:flex;flex-direction:column;gap:14px;}
+  .checklist .ci{display:flex;align-items:flex-start;gap:12px;font-size:15px;}
+  .checklist .ci .ck{width:24px;height:24px;border-radius:7px;background:rgba(124,77,255,.16);
+    color:var(--accent-2);display:flex;align-items:center;justify-content:center;flex:0 0 24px;margin-top:2px;}
+  .checklist .ci .ck svg{width:15px;height:15px;}
+  .checklist .ci b{font-weight:700;}
+  .checklist .ci span{color:var(--mut);}
+  /* cover wall */
+  .wall{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .wall .w{aspect-ratio:2/3;border-radius:9px;position:relative;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.4);}
+  .wall .w:nth-child(2){transform:translateY(18px);}
+  .wall .w:nth-child(3){transform:translateY(-10px);}
+  .wall .w:nth-child(4){transform:translateY(12px);}
+  .wall .w .sc{position:absolute;inset-inline:0;bottom:0;height:50%;background:linear-gradient(to top,rgba(0,0,0,.75),transparent);}
+
+  /* ───────── DOWNLOAD CTA ───────── */
+  .cta{padding:100px 0;}
+  .cta-card{position:relative;overflow:hidden;border-radius:28px;padding:64px 40px;text-align:center;
+    background:linear-gradient(150deg,#3a2178,#1c1330 70%);border:1px solid #3a3152;}
+  .cta-card::before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;
+    top:-160px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(124,77,255,.5),transparent 60%);filter:blur(10px);}
+  .cta-card>*{position:relative;}
+  .cta-card .mark{width:64px;height:64px;border-radius:17px;overflow:hidden;margin:0 auto 22px;
+    box-shadow:0 16px 36px rgba(124,77,255,.5);}
+  .cta-card .mark svg{width:100%;height:100%;display:block;}
+  .cta-card h2{font-size:clamp(28px,4vw,42px);font-weight:900;margin:0 0 14px;letter-spacing:-.5px;}
+  .cta-card p{color:#cabfe6;font-size:16.5px;margin:0 auto 32px;max-width:480px;}
+  .cta-stores{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .cta-card .store{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);}
+  .cta-card .store:hover{background:rgba(255,255,255,.13);}
+  .cta-card .store .st small{color:#bdb2dc;}
+
+  /* ───────── FOOTER ───────── */
+  footer{border-top:1px solid var(--line-soft);padding:46px 0 40px;}
+  .foot-in{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+  .foot-links{display:flex;gap:26px;font-size:14px;color:var(--mut);font-weight:600;flex-wrap:wrap;}
+  .foot-links a:hover{color:var(--ink);}
+  .foot-cr{color:var(--faint);font-size:13px;}
+  .foot-note{margin-top:22px;padding-top:22px;border-top:1px solid var(--line-soft);
+    color:var(--faint);font-size:12.5px;line-height:1.9;max-width:760px;}
+</style>
+</head>
+<body>
+
+<!-- shared icon mark (book spines) -->
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="mark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#5b21b6"/></linearGradient></defs></svg>
+
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="url(#mark)"/><rect x="26" y="30" width="13" height="44" rx="3" fill="#fff"/><rect x="43" y="24" width="13" height="50" rx="3" fill="#fff" opacity=".92"/><rect x="60" y="34" width="13" height="40" rx="3" fill="#fff" opacity=".78" transform="rotate(7 66 54)"/></svg>
+      </div>
+      <span class="en">Mangaro</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">ویژگی‌ها</a>
+      <a href="#rtl">چرا مانگارو</a>
+      <a href="#sources">منابع</a>
+      <a href="#download">دانلود</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="#download">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5zm14-9h-4V3H9v8H5l7 7z"/></svg>
+        دانلود رایگان
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ───────── HERO ───────── -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="pill"><span class="dot"></span> رایگان · بدون تبلیغات</div>
+      <h1 class="head">دنیای <span class="hl">مانگا</span> و کمیک، در دستان شما</h1>
+      <p class="lead">مانگارو یک خوانندهٔ مانگای کامل فارسی است؛ هزاران عنوان از ده‌ها منبع، خواندنِ آفلاین، و تجربه‌ای کاملاً راست‌به‌چپ که برای فارسی‌زبان‌ها ساخته شده.</p>
+      <div class="hero-cta">
+        <a class="store" href="#download">
+          <span class="si" style="background:#0a8f4d"><svg viewBox="0 0 24 24" width="18" fill="#fff"><path d="M3 20.5V3.5a1 1 0 0 1 1.6-.8l13 8.5a1 1 0 0 1 0 1.7l-13 8.4a1 1 0 0 1-1.6-.8Z"/></svg></span>
+          <span class="st"><small>دریافت از</small><b>کافه‌بازار</b></span>
+        </a>
+        <a class="store" href="#download">
+          <span class="si" style="background:#e63b2e"><svg viewBox="0 0 24 24" width="17" fill="#fff"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6Z"/></svg></span>
+          <span class="st"><small>دریافت از</small><b>مایکت</b></span>
+        </a>
+        <a class="store" href="#download">
+          <span class="si" style="background:#7c4dff"><svg viewBox="0 0 24 24" width="17" fill="#fff"><path d="M5 20h14v-2H5zm14-9h-4V3H9v8H5l7 7z"/></svg></span>
+          <span class="st"><small>نصب مستقیم</small><b>فایل APK</b></span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="s"><b>+۵۰</b><span>منبع فعال</span></div>
+        <div class="s"><b>+۱۲۰K</b><span>عنوان مانگا</span></div>
+        <div class="s"><b>۴٫۸</b><span>امتیاز کاربران</span></div>
+      </div>
+    </div>
+
+    <div class="phone-stage">
+      <div class="glow"></div>
+      <div class="phone"><div class="screen">
+        <div class="s-status"><span>۹:۳۰</span><span>۸۵٪</span></div>
+        <div class="s-bar">
+          <span class="t">کتابخانه</span>
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5L20.5 19zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
+          <svg class="ic" viewBox="0 0 24 24" fill="currentColor"><path d="M10 18h4v-2h-4zM3 6v2h18V6zm3 7h12v-2H6z"/></svg>
+        </div>
+        <div class="s-tabs"><span class="on">در حال خواندن</span><span>تمام‌شده</span><span>بعداً</span></div>
+        <div class="s-grid" id="sgrid"></div>
+        <div class="s-nav">
+          <div class="n on"><div class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H9a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM3 6v14a2 2 0 0 0 2 2h12v-2H5V6z"/></svg></div>کتابخانه</div>
+          <div class="n"><div class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 9.2 8.6 2 9.2l5.5 4.8L5.8 21 12 17.3 18.2 21l-1.7-7 5.5-4.8-7.2-.6Z"/></svg></div>تازه‌ها</div>
+          <div class="n"><div class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 3a9 9 0 0 0-9 9H1l4 4 4-4H6a7 7 0 1 1 7 7 6.9 6.9 0 0 1-5-2l-1.4 1.5A9 9 0 1 0 13 3zm-1 5v5l4.3 2.5.7-1.2-3.5-2V8z"/></svg></div>تاریخچه</div>
+          <div class="n"><div class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm2.2 12.2L6 18l3.8-8.2L18 6z"/></svg></div>مرور</div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- sources strip -->
+<section class="strip" id="sources">
+  <div class="wrap strip-in">
+    <b>منابع پشتیبانی‌شده:</b>
+    <span class="src-chip"><i style="background:#34d399"></i> ماری‌اسکن</span>
+    <span class="src-chip"><i style="background:#60a5fa"></i> مانگادکس</span>
+    <span class="src-chip"><i style="background:#f472b6"></i> وب‌تون</span>
+    <span class="src-chip"><i style="background:#fbbf24"></i> مانگاپلاس</span>
+    <span class="src-chip"><i style="background:#a78bfa"></i> + ۴۶ منبع دیگر</span>
+  </div>
+</section>
+
+<!-- ───────── FEATURES ───────── -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">چرا مانگارو؟</div>
+      <h2>هرچه برای خواندن لازم داری، یک‌جا</h2>
+      <p>از کتابخانهٔ شخصی تا خواندن آفلاین و همگام‌سازی پیشرفت؛ مانگارو همه‌چیز را ساده می‌کند.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat span2">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-3a15.7 15.7 0 0 0-1.4-3.6A8 8 0 0 1 18.9 8zM12 4a14 14 0 0 1 1.9 4h-3.8A14 14 0 0 1 12 4zM4.3 14a7.8 7.8 0 0 1 0-4h3.4a16.5 16.5 0 0 0 0 4zm.8 2H8a15.7 15.7 0 0 0 1.4 3.6A8 8 0 0 1 5.1 16zm2.9-8H5.1a8 8 0 0 1 4.3-3.6A15.7 15.7 0 0 0 8 8zM12 20a14 14 0 0 1-1.9-4h3.8A14 14 0 0 1 12 20zm2.3-6H9.7a14.7 14.7 0 0 1 0-4h4.6a14.7 14.7 0 0 1 0 4zm.3 5.6A15.7 15.7 0 0 0 16 16h2.9a8 8 0 0 1-4.3 3.6zM16.4 14a16.5 16.5 0 0 0 0-4h3.4a7.8 7.8 0 0 1 0 4z"/></svg></div>
+        <h3>ده‌ها منبع، یک کتابخانه</h3>
+        <p>به بیش از ۵۰ منبع مانگا و کمیک دسترسی داشته باش، همه را در یک کتابخانهٔ یکپارچه دنبال کن و با دسته‌بندی دلخواه مرتب‌شان کن. جست‌وجوی هم‌زمان در تمام منابع تنها با یک ضربه.</p>
+      </div>
+      <div class="feat">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.4 10A7.5 7.5 0 0 0 12 4c-1.5 0-2.9.4-4 1.2l1.5 1.5A5.5 5.5 0 0 1 17.6 11v.5H19a3.5 3.5 0 0 1 2.4 6l1.4 1.4A5.5 5.5 0 0 0 19.4 10zM3 5.3 5.8 8A7 7 0 0 0 6 22h11.7l2 2 1.3-1.3L4.3 4zM7.7 10l8 8H6a5 5 0 0 1-.6-10z"/></svg></div>
+        <h3>خواندن آفلاین</h3>
+        <p>فصل‌ها را دانلود کن و هرجا، حتی بدون اینترنت، بخوان.</p>
+      </div>
+      <div class="feat">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h6v-2H3zM3 6v2h18V6zm3 7h12v-2H6z"/></svg></div>
+        <h3>راست‌به‌چپ کامل</h3>
+        <p>رابط و خوانندهٔ ویژهٔ فارسی، با چیدمان درست و طبیعی.</p>
+      </div>
+      <div class="feat">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.7 6.3 9 15l-3.5-3.5L4 13l5 5 10-10z M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" opacity=".0"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-2 15-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8z"/></svg></div>
+        <h3>پیشرفتِ همگام</h3>
+        <p>تاریخچه و فصل‌های خوانده‌شده روی همهٔ دستگاه‌هایت یکی می‌ماند.</p>
+      </div>
+      <div class="feat span2">
+        <div class="fi"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 14c-1.7 0-3 1.3-3 3 0 1.3-1.2 2-2 2 .9 1.2 2.5 2 4 2 2.2 0 4-1.8 4-4 0-1.7-1.3-3-3-3zm13.7-9.4-1.3-1.3a1 1 0 0 0-1.4 0L9 12l2.8 2.8 9-9a1 1 0 0 0 0-1.2z"/></svg></div>
+        <h3>خواننده‌ای که با تو تنظیم می‌شود</h3>
+        <p>حالت‌های صفحه‌به‌صفحه، طوماری و دوصفحه‌ای؛ روشنایی، فاصله و جهت خواندن همه قابل‌تنظیم‌اند تا تجربهٔ مطالعه دقیقاً مطابق سلیقهٔ تو باشد.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── RTL band ───────── -->
+<section class="band" id="rtl">
+  <div class="wrap band-grid">
+    <div>
+      <h2>ساخته‌شده برای فارسی‌زبان‌ها</h2>
+      <p>بیشتر خواننده‌های مانگا برای زبان‌های چپ‌به‌راست طراحی شده‌اند. مانگارو از پایه راست‌به‌چپ است؛ از منوها تا جهت ورق‌زدنِ صفحه‌ها.</p>
+      <div class="checklist">
+        <div class="ci"><span class="ck"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><b>رابط کاملاً فارسی</b> — بدون ترجمهٔ ماشینی و نیم‌بند.</span></div>
+        <div class="ci"><span class="ck"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><b>ورق‌زدن راست‌به‌چپ</b> — همان‌طور که مانگا باید خوانده شود.</span></div>
+        <div class="ci"><span class="ck"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><b>اعداد و تاریخ فارسی</b> — حتی تقویم شمسی.</span></div>
+        <div class="ci"><span class="ck"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></span><span><b>منابع فارسی</b> — اسکن‌های ترجمه‌شده در دسترس.</span></div>
+      </div>
+    </div>
+    <div class="wall" id="wall"></div>
+  </div>
+</section>
+
+<!-- ───────── DOWNLOAD CTA ───────── -->
+<section class="cta" id="download">
+  <div class="wrap">
+    <div class="cta-card">
+      <div class="mark">
+        <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="url(#mark)"/><rect x="26" y="30" width="13" height="44" rx="3" fill="#fff"/><rect x="43" y="24" width="13" height="50" rx="3" fill="#fff" opacity=".92"/><rect x="60" y="34" width="13" height="40" rx="3" fill="#fff" opacity=".78" transform="rotate(7 66 54)"/></svg>
+      </div>
+      <h2>همین حالا شروع کن</h2>
+      <p>مانگارو را رایگان دانلود کن و کتابخانهٔ مانگای خودت را بساز. بدون تبلیغات، بدون اشتراک.</p>
+      <div class="cta-stores">
+        <a class="store" href="#"><span class="si" style="background:#0a8f4d"><svg viewBox="0 0 24 24" width="18" fill="#fff"><path d="M3 20.5V3.5a1 1 0 0 1 1.6-.8l13 8.5a1 1 0 0 1 0 1.7l-13 8.4a1 1 0 0 1-1.6-.8Z"/></svg></span><span class="st"><small>دریافت از</small><b>کافه‌بازار</b></span></a>
+        <a class="store" href="#"><span class="si" style="background:#e63b2e"><svg viewBox="0 0 24 24" width="17" fill="#fff"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6Z"/></svg></span><span class="st"><small>دریافت از</small><b>مایکت</b></span></a>
+        <a class="store" href="#"><span class="si" style="background:#7c4dff"><svg viewBox="0 0 24 24" width="17" fill="#fff"><path d="M5 20h14v-2H5zm14-9h-4V3H9v8H5l7 7z"/></svg></span><span class="st"><small>نصب مستقیم</small><b>فایل APK</b></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── FOOTER ───────── -->
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <div class="brand">
+        <div class="mark"><svg viewBox="0 0 100 100"><rect width="100" height="100" fill="url(#mark)"/><rect x="26" y="30" width="13" height="44" rx="3" fill="#fff"/><rect x="43" y="24" width="13" height="50" rx="3" fill="#fff" opacity=".92"/><rect x="60" y="34" width="13" height="40" rx="3" fill="#fff" opacity=".78" transform="rotate(7 66 54)"/></svg></div>
+        <span class="en">Mangaro</span>
+      </div>
+      <div class="foot-links">
+        <a href="#features">ویژگی‌ها</a>
+        <a href="#sources">منابع</a>
+        <a href="#download">دانلود</a>
+        <a href="#">پشتیبانی</a>
+        <a href="#">حریم خصوصی</a>
+      </div>
+      <div class="foot-cr">© ۱۴۰۳ مانگارو</div>
+    </div>
+    <p class="foot-note">مانگارو یک خوانندهٔ محتوای مانگا است و خود میزبان هیچ اثری نیست؛ محتوا از منابع شخص ثالث بارگیری می‌شود. لطفاً در صورت امکان از ناشران رسمی حمایت کنید.</p>
+  </div>
+</footer>
+
+<script>
+const COVERS = [
+  "linear-gradient(150deg,#4f46e5,#7c3aed 55%,#a78bfa)",
+  "linear-gradient(150deg,#0e7490,#1e3a8a 55%,#38bdf8)",
+  "linear-gradient(150deg,#9f1239,#7f1d1d 55%,#fb7185)",
+  "linear-gradient(150deg,#b45309,#7c2d12 55%,#fbbf24)",
+  "linear-gradient(150deg,#047857,#064e3b 55%,#34d399)",
+  "linear-gradient(150deg,#7c3aed,#a21caf 55%,#e879f9)",
+  "linear-gradient(150deg,#0369a1,#3730a3 55%,#60a5fa)",
+  "linear-gradient(150deg,#be185d,#6d28d9 55%,#f9a8d4)",
+];
+const TITLES = ["تایتان‌های مهاجم","قاتل اهریمن","جوجوتسو کایسن","وان‌پیس","برج خدا","بلیچ","ناروتو","هانتر"];
+const fa = n => String(n).replace(/[0-9]/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+
+// phone library grid
+const sgrid = document.getElementById('sgrid');
+const badges = {0:3,1:null,5:7};
+for(let i=0;i<9;i++){
+  const d=document.createElement('div'); d.className='s-cov';
+  d.style.background=COVERS[i%COVERS.length];
+  d.innerHTML=`<div class="sc"></div><div class="ct">${TITLES[i%TITLES.length]}</div>`+
+    (badges[i]?`<div class="bd">${fa(badges[i])}</div>`:'');
+  sgrid.appendChild(d);
+}
+
+// cover wall
+const wall=document.getElementById('wall');
+[0,2,4,7,1,5,3,6].forEach(g=>{
+  const w=document.createElement('div'); w.className='w';
+  w.style.background=COVERS[g%COVERS.length];
+  w.innerHTML='<div class="sc"></div>';
+  wall.appendChild(w);
+});
+</script>
+</body>
+</html>
